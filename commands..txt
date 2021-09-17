@@ -1,0 +1,30 @@
+1. venv
+2. pip install django
+3. django-admin startproject mysite . - створюємо новий проект
+4. python manage.py migrate - створюємо DB файл
+5. manage.py runserver - запуск сервера
+6. python manage.py startapp blog - створює нові sub-app
+7. add new app on INSTALLED_APPS from settings.py
+8. create models in app/models.py
+9. python manage.py createsuperuser
+10. manage.py makemigrations blog - створює commit 
+11. manage.py migrate blog
+
+
+manage.py shell - відкриває режим QuerySets для перегляду бази
+form blog.models import Post
+Post.objects.all()
+from django.contrib.auth.models import User
+User.objects.all() 
+me = User.objects.get(username='admin')
+Post.objects.create(author=me,title="Post 3",text="text...")
+post = Post.objects.get(title='Post 3') 
+post.publish()
+Post.objects.filter(author=me) 
+Post.objects.filter(title__contains='3')  
+from django.utils import timezone
+Post.objects.filter(publish_date__lte=timezone.now()) 
+Post.objects.order_by('create_date')  
+Post.objects.filter(publish_date__lte=timezone.now()).order_by('create_date')   
+
+
